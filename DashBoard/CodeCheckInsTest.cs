@@ -37,15 +37,23 @@ namespace DashBoard
 	}
 	public class Meeting
 	{
+		public int NumberOfPeople { get; set; }
 		public readonly int day;
 		public readonly int Length;
 		public int minute;
 
 		public Meeting(int day, int hour, int minute, int length, int numberOfPeople)
 		{
+			NumberOfPeople = numberOfPeople;
 			this.day = day;
 			this.Length = length;
 			this.minute = hour*60 + minute;
+		}
+
+		public static bool IsWeekend(int day)
+		{
+			int dayOfWeek = day%7;
+			return (dayOfWeek == 0 || dayOfWeek == 6);
 		}
 	}
 }

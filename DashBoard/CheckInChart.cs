@@ -47,7 +47,7 @@ namespace DashBoard
 		private void DrawBackground(Graphics g, int day)
 		{
 			int startX = GetStartXForDay(day);
-			if (IsWeekend(day))
+			if (Meeting.IsWeekend(day))
 			{
 				g.FillRectangle(Brushes.DarkGray, startX, 0, barWidth, barHeight);
 				g.FillRectangle(Brushes.Firebrick, startX, ScaleHeight(8 * 60), barWidth, ScaleHeight((9+5) * 60));
@@ -62,12 +62,7 @@ namespace DashBoard
 			}
 				}
 
-		private bool IsWeekend(int day)
-		{
-			int dayOfWeek = day%7;
-			return (dayOfWeek == 0 || dayOfWeek == 6);
-		}
-
+		
 		private void PaintDay(Graphics g, int day)
 		{
 			int startX = GetStartXForDay(day);
