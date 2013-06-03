@@ -12,13 +12,13 @@ namespace DashBoard
 {
 	public partial class CheckInChart : Form
 	{
-		private readonly CheckIn[] checkins;
+		private readonly IEnumerable<CheckIn> checkins;
 		private int barWidth=4;
 		private int barHeight=600;
 		private double minutesPerDay=60*24;
 		private int numberOfDays = 8*4*7;
 
-		public CheckInChart(CheckIn[] checkins)
+		public CheckInChart(IEnumerable<CheckIn> checkins)
 		{
 			this.checkins = checkins;
 			InitializeComponent();
