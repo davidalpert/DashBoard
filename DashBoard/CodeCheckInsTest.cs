@@ -24,9 +24,10 @@ namespace DashBoard
 		}
 
 		[TestMethod]
+//		[UseReporter(typeof(FileLauncherReporter))]
 		public void GenerateHunter()
 		{
-			var start = new DateTime(2013, 1, 1);
+			var start = new DateTime(2012, 12, 30);
 			string csvFile = @"C:\code\DashBoard\DashBoard\checkins.csv";
         string[] lines = File.ReadAllLines(csvFile);
 			var checkins = lines.Select(l => l.Split(',').ToArray())
