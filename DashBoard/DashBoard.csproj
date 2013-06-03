@@ -67,6 +67,12 @@
       <DependentUpon>CheckInChart.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeCheckInsTest.cs" />
+    <Compile Include="MeetingsChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeetingsChart.Designer.cs">
+      <DependentUpon>MeetingsChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeetingsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
