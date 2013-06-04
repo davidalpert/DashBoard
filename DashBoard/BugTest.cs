@@ -18,6 +18,23 @@ namespace DashBoard
 			ApprovalTests.WinForms.WinFormsApprovals.Verify(new BugsChart(bugs));
 		}
 
+		[TestMethod]
+		public void TestHunterBugChart()
+		{
+
+			var bugs = Enumerable.Range(0, 60).SelectMany(i => GenerateHunterBugs(i));
+			ApprovalTests.WinForms.WinFormsApprovals.Verify(new BugsChart(bugs));
+		}
+
+		private IEnumerable<Bug> GenerateHunterBugs(int i)
+		{
+			int bugs = random.Next(5)-3;
+			for (int j = 0; j < bugs; j++)
+			{
+				yield return new Bug(i,1);
+			}
+		}
+
 		private IEnumerable<Bug> GenerateBugs(int i)
 		{
 			int bugs = random.Next(4)-1;

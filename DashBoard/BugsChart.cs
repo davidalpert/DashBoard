@@ -23,7 +23,7 @@ namespace DashBoard
 			wheel.AddRange(Enumerable.Range(0, 20).Select(i => Color.FromArgb(215, 150 + i * 5,20, 0)));
 			colors = this.bugs.ToDictionary(b => b, b => wheel.Next());
 			InitializeComponent();
-			numberOfDays = this.bugs.Max(b => b.day + 2);
+			numberOfDays = 60;//this.bugs.Max(b => b.day + 2);
 			Width= ((barWidth+1)*(numberOfDays+2)) + 10;
 			Height = xBar + 10;
 			FormBorderStyle = FormBorderStyle.None;
