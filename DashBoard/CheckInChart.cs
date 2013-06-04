@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DashBoard
@@ -23,7 +19,7 @@ namespace DashBoard
 			this.checkins = checkins;
 			InitializeComponent();
 			this.Width= (barWidth+1)*numberOfDays;
-			this.Height = barHeight + 60;
+			this.Height = barHeight;
 			FormBorderStyle = FormBorderStyle.None;
 		}
 
