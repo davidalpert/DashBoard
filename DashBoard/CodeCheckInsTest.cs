@@ -22,7 +22,7 @@ namespace DashBoard
 				, new CheckIn(1, 19, 30, 100)
 				, new CheckIn(2, 10, 0, 500) }; 
 
-			ApprovalTests.WinForms.WinFormsApprovals.Verify(new CheckInChart(checkins));
+			WinFormsApprovals.Verify(new CheckInChart(checkins));
 
 		}
 

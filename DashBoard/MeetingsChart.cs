@@ -13,13 +13,14 @@ namespace DashBoard
 		private readonly int endOfDay = 18*60;
 		private int barWidth=10;
 		private int barHeight=600;
-		private double minutesPerDay=60*24;
-		private int numberOfDays = 2*4*7;
-		protected double TeamSize = 10;
+		private int numberOfDays = numberOfWeeks*7;
+		protected double TeamSize;
+		private static int numberOfWeeks = 2*4;
 
-		public MeetingsChart(IEnumerable<Meeting> meetings)
+		public MeetingsChart(IEnumerable<Meeting> meetings, int teamSize)
 		{
 			this.meetings = meetings;
+			this.TeamSize = teamSize;
 			InitializeComponent();
 			this.Width= (barWidth+1)*numberOfDays;
 			this.Height = barHeight;
@@ -99,6 +100,16 @@ namespace DashBoard
 			double adjustTotalDay = endOfDay - startOfDay;
 			double percent = (adjustMin/adjustTotalDay);
 			return (int) (percent*barHeight);
+		}
+
+		public int GetTotalManHours()
+		{
+			return meetings.Sum(m => m.Length*m.NumberOfPeople)/60;
+		}
+
+		public int GetPercentOfWeek()
+		{
+			return  (int) Math.Round(GetTotalManHours()*100.0/(TeamSize *40 * numberOfWeeks));
 		}
 	}
 }
