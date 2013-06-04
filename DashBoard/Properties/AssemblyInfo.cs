@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using ApprovalTests.Reporters;
+using DashBoard;
+
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -14,7 +16,7 @@ using ApprovalTests.Reporters;
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: UseReporter(typeof(DiffReporter),typeof(ClipboardReporter))]
+[assembly: UseReporter(typeof(MyImageReporter))]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

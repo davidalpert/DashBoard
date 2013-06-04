@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BugTest.cs" />
     <Compile Include="CheckInChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,12 @@
       <DependentUpon>CheckInChart.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeCheckInsTest.cs" />
+    <Compile Include="BugsChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BugsChart.Designer.cs">
+      <DependentUpon>BugsChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeetingsChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +81,7 @@
       <DependentUpon>MeetingsChart.cs</DependentUpon>
     </Compile>
     <Compile Include="MeetingsTest.cs" />
+    <Compile Include="MyImageReporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

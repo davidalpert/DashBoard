@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DashBoard
 {
 	[TestClass]
-	[UseReporter(typeof(AllFailingTestsClipboardReporter))]
 	public class CodeCheckInsTest
 	{
 		private Random random = new Random(2000);
