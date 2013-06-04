@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using ApprovalTests.Reporters;
@@ -13,6 +12,8 @@ namespace DashBoard
 	[UseReporter(typeof(AllFailingTestsClipboardReporter))]
 	public class CodeCheckInsTest
 	{
+		private Random random = new Random(2000);
+
 		[TestMethod]
 		public void TestCheckins()
 		{
@@ -26,6 +27,38 @@ namespace DashBoard
 		}
 
 		[TestMethod]
+		public void GenerateOther()
+		{
+			var checkins = Enumerable.Range(0, 8*4*7)
+			                         .SelectMany(c => GenerateForDay(c));
+			WinFormsApprovals.Verify(new CheckInChart(checkins));
+		}
+		private IEnumerable<CheckIn> GenerateForDay(int day)
+		{
+			var number = random.Next(Meeting.IsWeekend(day) ? Meeting.IsEveryOtherWeekend(day)?0:4: 3);
+			for (int i = 0; i < number; i++)
+			{
+			  Func<int> daytime = () => random.Next(9, 17); 
+			  Func<int> evening = () => random.Next(17, 20);
+			  Func<int> night = () => random.Next(20, 24);
+				Func<int> time = daytime;
+				int dice = random.Next(100);
+				if ( 90 < dice)
+				{
+					time = night;
+				}
+				else if (75 < dice)
+				{
+					time = evening;
+				}
+
+				var hour = time();
+
+				yield return new CheckIn(day, hour , random.Next(60), random.Next(10,1000));
+			}
+		}
+
+		[TestMethod]
 		public void GenerateHunter()
 		{
 			var start = new DateTime(2012, 12, 30);
@@ -36,6 +69,8 @@ namespace DashBoard
 
 			WinFormsApprovals.Verify(new CheckInChart(checkins));
 		}
+
+
 
 		public static IEnumerable<string[]> ProcessCsvFile(string csvFile)
 		{
@@ -74,7 +109,12 @@ namespace DashBoard
 		public static bool IsWeekend(int day)
 		{
 			int dayOfWeek = day%7;
-			return (dayOfWeek == 0 || dayOfWeek == 6);
+			return (new []{0,6}.Contains(dayOfWeek));
+		}
+		public static bool IsEveryOtherWeekend(int day)
+		{
+			int dayOfWeek = day%14;
+			return (new []{0,13}.Contains(dayOfWeek));
 		}
 	}
 }

@@ -82,7 +82,7 @@ namespace DashBoard
 
 		private void DrawCircle(Graphics g, int x, int y, int radius)
 		{
-			g.FillEllipse(Brushes.Black,x-radius, y-radius,radius*2, radius*2);
+			g.FillEllipse(MeetingsChart.GetSemiTransparentBlack(),x-radius, y-radius,radius*2, radius*2);
 		}
 
 		private int ScaleHeight(int minute)

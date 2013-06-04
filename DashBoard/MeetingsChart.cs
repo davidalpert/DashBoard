@@ -65,11 +65,16 @@ namespace DashBoard
 			{
 				int width = ScaleWidth(meeting.NumberOfPeople);
 				int difference = (barWidth - width)/2;
-				g.FillRectangle(Brushes.Black, startX + difference, ScaleHeight(meeting.minute), width, ScaleHeightLength(meeting.Length));
+				Brush black = GetSemiTransparentBlack();
+				g.FillRectangle(black, startX + difference, ScaleHeight(meeting.minute), width, ScaleHeightLength(meeting.Length));
 			}
 		}
 
-		
+		public static SolidBrush GetSemiTransparentBlack()
+		{
+			return new SolidBrush(Color.FromArgb(190,Color.Black));
+		}
+
 
 		private int GetStartXForDay(int day)
 		{
