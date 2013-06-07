@@ -14,6 +14,12 @@ namespace DashBoard
 		private Random random = new Random(2000);
 
 		[TestMethod]
+		public void TestEmptyCheckins()
+		{
+			WinFormsApprovals.Verify(new CheckInChart(new CheckIn[0]));
+
+		}
+		[TestMethod]
 		public void TestCheckins()
 		{
 			var checkins = new[] { new CheckIn(1, 9, 30, 10)

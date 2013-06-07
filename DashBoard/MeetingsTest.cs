@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ApprovalTests.Reporters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ApprovalTests.WinForms;
 using ApprovalUtilities.Utilities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DashBoard
 {
 	[TestClass]
 	public class MeetingsTest
 	{
+		[TestMethod]
+		public void TestEmptyMeetings()
+		{
+			WinFormsApprovals.Verify(new MeetingsChart(new Meeting[0], 10));
+		}
 
 		[TestMethod]
 		public void TestMeetings()
@@ -20,7 +25,7 @@ namespace DashBoard
 					new Meeting(5, 10, 30, 30, 20),
 					new Meeting(8, 9, 0, 90, 10)
 				});
-			ApprovalTests.WinForms.WinFormsApprovals.Verify(new MeetingsChart(meetings,10));
+			WinFormsApprovals.Verify(new MeetingsChart(meetings, 10));
 		}
 
 		[TestMethod]
@@ -32,28 +37,27 @@ namespace DashBoard
 			var chart = new MeetingsChart(meetings, 5);
 			Console.WriteLine("Total Man Hours:{0}".FormatWith(chart.GetTotalManHours()));
 			Console.WriteLine("Percent Of Week:{0}".FormatWith(chart.GetPercentOfWeek()));
-			ApprovalTests.WinForms.WinFormsApprovals.Verify(chart);
-		
+			WinFormsApprovals.Verify(chart);
 		}
 
 		private static IEnumerable<int> RandomTwiceAWeek()
 		{
-			return Enumerable.Range(0, 4 * 7 * 2).Where(i => !Meeting.IsWeekend(i) );
+			return Enumerable.Range(0, 4*7*2).Where(i => !Meeting.IsWeekend(i));
 		}
 
 		private static IEnumerable<int> LastDayOfMonths()
 		{
-			return Enumerable.Range(0, 4 * 7 * 2).Where(i => i % 30 == 1);
+			return Enumerable.Range(0, 4*7*2).Where(i => i%30 == 1);
 		}
 
 		private static IEnumerable<int> Mondays()
 		{
-			return Enumerable.Range(0, 4 * 7 * 2).Where(i => i % 7 == 1);
+			return Enumerable.Range(0, 4*7*2).Where(i => i%7 == 1);
 		}
 
 		private static IEnumerable<int> WeekDays()
 		{
-			return Enumerable.Range(0,4*7*2).Where(i => !Meeting.IsWeekend(i));
+			return Enumerable.Range(0, 4*7*2).Where(i => !Meeting.IsWeekend(i));
 		}
 	}
 }

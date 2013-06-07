@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ApprovalTests.Reporters;
+using ApprovalTests.WinForms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DashBoard
@@ -9,35 +9,40 @@ namespace DashBoard
 	[TestClass]
 	public class BugTest
 	{
-		Random random = new Random(4);
+		private Random random = new Random(4);
+
+		[TestMethod]
+		public void TestEmptyBugChart()
+		{
+			WinFormsApprovals.Verify(new BugsChart(new Bug[0]));
+		}
+
 		[TestMethod]
 		public void TestBugChart()
 		{
-
 			var bugs = Enumerable.Range(0, 60).SelectMany(i => GenerateBugs(i));
-			ApprovalTests.WinForms.WinFormsApprovals.Verify(new BugsChart(bugs));
+			WinFormsApprovals.Verify(new BugsChart(bugs));
 		}
 
 		[TestMethod]
 		public void TestHunterBugChart()
 		{
-
 			var bugs = Enumerable.Range(0, 60).SelectMany(i => GenerateHunterBugs(i));
-			ApprovalTests.WinForms.WinFormsApprovals.Verify(new BugsChart(bugs));
+			WinFormsApprovals.Verify(new BugsChart(bugs));
 		}
 
 		private IEnumerable<Bug> GenerateHunterBugs(int i)
 		{
-			int bugs = random.Next(5)-3;
+			int bugs = random.Next(5) - 3;
 			for (int j = 0; j < bugs; j++)
 			{
-				yield return new Bug(i,1);
+				yield return new Bug(i, 1);
 			}
 		}
 
 		private IEnumerable<Bug> GenerateBugs(int i)
 		{
-			int bugs = random.Next(4)-1;
+			int bugs = random.Next(4) - 1;
 			for (int j = 0; j < bugs; j++)
 			{
 				yield return new Bug(i, random.Next(70));
@@ -56,7 +61,7 @@ namespace DashBoard
 			this.duration = duration;
 		}
 
-		public int LastDay	
+		public int LastDay
 		{
 			get { return day + duration; }
 		}
