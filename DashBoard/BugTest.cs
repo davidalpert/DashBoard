@@ -65,7 +65,12 @@ namespace DashBoard
 		{
 			get { return day + duration; }
 		}
-
+		public bool IsLastDay(int i)
+		{
+			
+				return LastDay == i;
+			
+		}
 		public bool IsOpenOnDay(int i)
 		{
 			return day <= i && i <= LastDay;
